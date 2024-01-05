@@ -48,6 +48,14 @@ class LatestReleases extends StatelessWidget {
               itemCount: distros.length,
               padding: const EdgeInsets.only(bottom: 8.0),
               itemBuilder: (BuildContext context, int index) {
+                String tempTitle = distros[index].section;
+                String imageUrl =
+                    'https://distrowatch.com/images/yvzhuwbpy/$tempTitle.png';
+
+                if (tempTitle.contains('DistroWatch Weekly')) {
+                  imageUrl = "https://distrowatch.com/images/yvzhuwbpy/skoi.png";
+                }
+
                 return Card(
                   elevation: 3,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -61,8 +69,7 @@ class LatestReleases extends StatelessWidget {
                           ? const Icon(Icons.error)
                           : CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl:
-                                  'https://distrowatch.com/images/yvzhuwbpy/${distros[index].section}.png',
+                              imageUrl: imageUrl,
                               alignment: Alignment.center,
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),

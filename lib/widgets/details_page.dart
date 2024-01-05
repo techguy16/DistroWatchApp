@@ -74,10 +74,19 @@ class _DetailsPageState extends State<DetailsPage> {
       distro = Get.arguments as NewDistroModel;
       isNewDistro = true;
     }
+    String articleTitle;
+    var contains = distro.title;
+    if (contains.contains("DistroWatch Weekly")) {
+      articleTitle = distro.title;
+    } else if (contains.contains("Development Release")) {
+      articleTitle = distro.title.substring(21);
+    } else {
+      articleTitle = distro.title.substring(22);
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          isNewDistro ? distro.title : distro.title.substring(22),
+          articleTitle
         ),
         centerTitle: false,
         actions: [
